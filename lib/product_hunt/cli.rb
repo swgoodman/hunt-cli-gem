@@ -15,7 +15,7 @@ class ProductHunt::CLI
 
   def show_top_five
     @top_five = ProductHunt::Product.top_five
-    @top_five.each.with_index do |product, i|
+    @top_five.each.with_index(1) do |product, i|
       puts "#{i}. #{product.name}"
       puts "#{product.blurb}"
     end
