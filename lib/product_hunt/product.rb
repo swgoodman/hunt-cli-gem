@@ -9,4 +9,8 @@ class ProductHunt::Product
     @url = url
     @@all << self
   end
+
+  def self.top_five
+    puts "this is working"
+  end
 end

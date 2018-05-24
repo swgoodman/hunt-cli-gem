@@ -13,11 +13,7 @@ class ProductHunt::CLI
   end
 
   def show_top_five
-    puts "1. App"
-    puts "2. Website"
-    puts "3. Gear"
-    puts "4. New feature"
-    puts "5. App"
+    top_five = ProductHunt::Product.top_five
   end
 
   def menu
