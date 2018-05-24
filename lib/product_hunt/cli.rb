@@ -1,5 +1,6 @@
 
 class ProductHunt::CLI
+  attr_accessor :top_five
 
 
   def call
@@ -13,7 +14,11 @@ class ProductHunt::CLI
   end
 
   def show_top_five
-    top_five = ProductHunt::Product.top_five
+    @top_five = ProductHunt::Product.top_five
+    @top_five.each.with_index do |product, i|
+      puts "#{i}. #{product.name}"
+      puts "#{product.blurb}"
+    end
   end
 
   def menu
@@ -21,17 +26,13 @@ class ProductHunt::CLI
     puts "Enter the number of the product you'd like more info on or 'exit':"
     while input != "exit"
       input = gets.strip.downcase
-      case input
-      when "1"
+      if input.to_i.between?(1,@top_five.length)
         puts "more info on 1."
         puts "Type 'list' to choose another or 'exit'."
-      when "2"
-        puts "more info on 2."
-        puts "Type 'list' to choose another or 'exit'."
-      when "list"
+      elsif input == "list"
         show_top_five
         puts "Enter the number of the product you'd like more info on or 'exit':"
-      when "exit"
+      elsif input == "exit"
         goodbye
       else
         puts "Not sure what you want? Type 'list' or 'exit'."
